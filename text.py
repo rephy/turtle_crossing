@@ -25,3 +25,20 @@ class MainMessages(Turtle):
         screen.update()
         sleep(3)
         self.clear()
+
+class Level(Turtle):
+
+    def __init__(self):
+
+        super().__init__()
+
+        self.speed(10000)
+        self.hideturtle()
+        self.penup()
+        self.goto(x=-400, y=240)
+        self.pendown()
+
+    def level(self, level):
+
+        self.clear()
+        self.write(f"Level: {level}", align="center", font=("Comic Sans MS", 40, "normal"))

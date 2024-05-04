@@ -4,7 +4,7 @@ from random import randint
 
 from player import Player
 from cars import Cars
-from text import MainMessages
+from text import MainMessages, Level
 
 screen = Screen()
 
@@ -15,9 +15,12 @@ screen.tracer(0)
 cars = Cars()
 player = Player()
 
-main_messager = MainMessages()
+main_messages = MainMessages()
+level_keeper = Level()
 
 game = True
+
+level_keeper.level(1)
 
 def move():
 
@@ -38,12 +41,13 @@ while game:
             if car.ycor() + 9 >= player.ycor() >= car.ycor() - 9:
                 game = False
                 cars.clear_cars()
-                main_messager.game_over()
+                main_messages.game_over()
                 
     if player.ycor() >= 255:
         cars.clear_cars()
-        main_messager.new_difficulty(cars.difficulty, screen)
+        main_messages.new_difficulty(cars.difficulty, screen)
         cars.increase_difficulty()
+        level_keeper.level(cars.difficulty)
         player.goto(x=0, y=-255)
 
     screen.update()
