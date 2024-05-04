@@ -6,6 +6,7 @@ class Cars:
     def __init__(self):
 
         self.cars = []
+        self.difficulty = 1
         self.speed = 10
 
         colormode(255)
@@ -46,3 +47,4 @@ class Cars:
         self.cars = []
 
         self.speed *= 1.3
+        self.difficulty += 1
