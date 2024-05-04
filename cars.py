@@ -41,10 +41,12 @@ class Cars:
 
     def increase_difficulty(self):
 
+        self.speed *= 1.3
+        self.difficulty += 1
+
+    def clear_cars(self):
+
         for car in self.cars:
             car.hideturtle()
 
         self.cars = []
-
-        self.speed *= 1.3
-        self.difficulty += 1

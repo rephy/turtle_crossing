@@ -1,10 +1,10 @@
-import turtle
 from turtle import Screen
 from time import sleep
 from random import randint
 
 from player import Player
 from cars import Cars
+from text import MainMessages
 
 screen = Screen()
 
@@ -14,6 +14,8 @@ screen.tracer(0)
 
 cars = Cars()
 player = Player()
+
+main_messager = MainMessages()
 
 game = True
 
@@ -35,8 +37,12 @@ while game:
         if car.xcor() + car.shapesize()[1] * 9 >= player.xcor() - 10 >= car.xcor() - car.shapesize()[1] * 9:
             if car.ycor() + 9 >= player.ycor() >= car.ycor() - 9:
                 game = False
+                cars.clear_cars()
+                main_messager.game_over()
+                
     if player.ycor() >= 255:
-        sleep(3)
+        cars.clear_cars()
+        main_messager.new_difficulty(cars.difficulty, screen)
         cars.increase_difficulty()
         player.goto(x=0, y=-255)
 
