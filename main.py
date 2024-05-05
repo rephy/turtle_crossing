@@ -32,13 +32,13 @@ screen.onkeypress(key="w", fun=move)
 screen.onkeypress(key="Up", fun=move)
 
 while game:
-    sleep(0.1)
-    if randint(1, 3) == 1:
+    sleep(0.1/cars.difficulty)
+    if randint(1, 3 * 10 ** (cars.difficulty - 1)) <= 11 ** (cars.difficulty - 1):
         cars.spawn_car()
     for car in cars.cars:
         car.forward(cars.speed/2)
         if car.xcor() + car.shapesize()[1] * 9 >= player.xcor() - 10 >= car.xcor() - car.shapesize()[1] * 9:
-            if car.ycor() + 9 >= player.ycor() >= car.ycor() - 9:
+            if (car.ycor() + 10 >= player.ycor() - 10 >= car.ycor() - 10) or (car.ycor() + 10 >= player.ycor() + 10 >= car.ycor() - 10):
                 game = False
                 cars.clear_cars()
                 main_messages.game_over()
